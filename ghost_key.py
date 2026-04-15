@@ -2,6 +2,7 @@ import hashlib
 import time
 import itertools
 import string
+from colorama import Fore, Style, init
 
 # Function that takes a plaintext string and returns its MD5 hash
 def string_to_md5_hash(str):
@@ -56,7 +57,7 @@ def dictionary_attack():
             if result:
                 end_time = time.perf_counter()
                 elapsed_time = end_time - start_time
-                print(f'Password: {guess}')
+                print(Fore.GREEN + f'Password: {guess}' + Style.RESET_ALL)
                 print(f'Attempts: {attempt_counter}')
                 print(f'Time Elapsed: {elapsed_time:.2f} seconds')
                 return
@@ -64,7 +65,7 @@ def dictionary_attack():
         # Only reaches here if entire wordlist exhausted with no match
         end_time = time.perf_counter()
         elapsed_time = end_time - start_time
-        print("Password not found in wordlist")
+        print(Fore.RED + "Password not found in wordlist" + Style.RESET_ALL)
         print(f"Attempts: {attempt_counter}")
         print(f"Time Elapsed: {elapsed_time:.2f} seconds")
 
@@ -100,7 +101,7 @@ def brute_force_attack(char_set, min_length, max_length):
             if result:
                 end_time = time.perf_counter()
                 elapsed_time = end_time - start_time
-                print(f'Password: {converted_combo}')
+                print(Fore.GREEN + f'Password: {converted_combo}' + Style.RESET_ALL)
                 print(f"Searched: {description_label} lengths {min_length}-{max_length}")
                 print(f'Attempts: {attempt_counter}')
                 print(f'Time Elapsed: {elapsed_time:.2f} seconds')
@@ -109,7 +110,7 @@ def brute_force_attack(char_set, min_length, max_length):
     # Only reaches here if search space exhausted with no match
     end_time = time.perf_counter()
     elapsed_time = end_time - start_time
-    print("Password not found in wordlist")
+    print(Fore.RED + "Password not found in wordlist" + Style.RESET_ALL)
     print(f"Searched: {description_label} lengths {min_length}-{max_length}")
     print(f"Attempts: {attempt_counter}")
     print(f"Time Elapsed: {elapsed_time:.2f} seconds")
