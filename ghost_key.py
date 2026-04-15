@@ -3,6 +3,7 @@ import time
 import itertools
 import string
 from colorama import Fore, Style, init
+from tqdm import tqdm
 
 # Function that takes a plaintext string and returns its MD5 hash
 def string_to_md5_hash(str):
@@ -48,7 +49,7 @@ def dictionary_attack():
         start_time = time.perf_counter()
 
         # Iterate through each line in the wordlist
-        for line in file:
+        for line in tqdm(file, total=14344391):
             guess = line.strip() # Remove newline character and whitespace
             result = verify(guess, stored_md5_hash) # Hash guess and compare to stored hash
             attempt_counter += 1
@@ -92,7 +93,8 @@ def brute_force_attack(char_set, min_length, max_length):
 
     # Generate every combination from min_length to max_length and check against stored hash
     for i in range(min_length, max_length + 1):
-        for combo in itertools.product(char_set, repeat=i):
+        total = len(char_set) ** i
+        for combo in tqdm(itertools.product(char_set, repeat=i), total=total):
             converted_combo = "".join(combo) # product returns tuples, join converts to string
             result = verify(converted_combo, stored_md5_hash)
             attempt_counter += 1
@@ -114,3 +116,4 @@ def brute_force_attack(char_set, min_length, max_length):
     print(f"Searched: {description_label} lengths {min_length}-{max_length}")
     print(f"Attempts: {attempt_counter}")
     print(f"Time Elapsed: {elapsed_time:.2f} seconds")
+brute_force_attack(string.ascii_lowercase, 1, 6)
