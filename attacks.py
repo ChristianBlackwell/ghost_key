@@ -2,10 +2,13 @@ import time
 import itertools
 import string
 from colorama import Fore, Style, init # type: ignore
+init()
 from tqdm import tqdm # type: ignore
 from hashing import verify
 
 def dictionary_attack(stored_hash):
+    print(Fore.YELLOW + "[*] Running dictionary attack..." + Style.RESET_ALL)
+    
     # Open rockyou.txt with utf-8 encoding, ignoring any characters that can't be decoded
     with open('rockyou.txt', 'r', encoding='utf-8', errors='ignore') as file:
         attempt_counter = 0
@@ -81,3 +84,16 @@ def brute_force_attack(stored_hash, char_set, min_length, max_length):
     print(f"Attempts: {attempt_counter}")
     print(f"Time Elapsed: {elapsed_time:.2f} seconds")
     return False
+
+def cupp_attack(stored_hash):
+    print(Fore.YELLOW + "[*] Running CUPP targeted attack..." + Style.RESET_ALL)
+    print("\n--- Target Profile ---")
+    first_name = input("First name: ")
+    last_name = input("Last name (optional): ")
+    birth_year = input("Birth year (optional): ")
+    pet_name = input("Pet name (optional): ")
+    keywords = input("Keywords, comma separated (optional): ")
+    
+    # generate wordlist
+    # run against hash
+    # return True or False
