@@ -1,8 +1,8 @@
 import time
 import itertools
 import string
-from colorama import Fore, Style, init
-from tqdm import tqdm
+from colorama import Fore, Style, init # type: ignore
+from tqdm import tqdm # type: ignore
 from hashing import verify
 
 def dictionary_attack(stored_hash):
@@ -24,7 +24,7 @@ def dictionary_attack(stored_hash):
                 print(Fore.GREEN + f'Password: {guess}' + Style.RESET_ALL)
                 print(f'Attempts: {attempt_counter}')
                 print(f'Time Elapsed: {elapsed_time:.2f} seconds')
-                return
+                return True
             
         # Only reaches here if entire wordlist exhausted with no match
         end_time = time.perf_counter()
@@ -32,6 +32,7 @@ def dictionary_attack(stored_hash):
         print(Fore.RED + "Password not found in wordlist" + Style.RESET_ALL)
         print(f"Attempts: {attempt_counter}")
         print(f"Time Elapsed: {elapsed_time:.2f} seconds")
+        return False
 
 # You would call brute_force_attack with the char_set, like string.ascii_lowercase and integers for min and max length, starting at 1 (passwords can't be 0)
 # example, brute_force_attack(string.ascii_lowercase, 1, 6)
@@ -70,7 +71,7 @@ def brute_force_attack(stored_hash, char_set, min_length, max_length):
                 print(f"Searched: {description_label} lengths {min_length}-{max_length}")
                 print(f'Attempts: {attempt_counter}')
                 print(f'Time Elapsed: {elapsed_time:.2f} seconds')
-                return
+                return True
     
     # Only reaches here if search space exhausted with no match
     end_time = time.perf_counter()
@@ -79,3 +80,4 @@ def brute_force_attack(stored_hash, char_set, min_length, max_length):
     print(f"Searched: {description_label} lengths {min_length}-{max_length}")
     print(f"Attempts: {attempt_counter}")
     print(f"Time Elapsed: {elapsed_time:.2f} seconds")
+    return False
