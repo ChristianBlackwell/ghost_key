@@ -23,7 +23,7 @@ def main():
             print(Fore.YELLOW + f"Generated MD5 hash: {stored_hash}" + Style.RESET_ALL)
         
     # Check if user has target information for CUPP
-    use_cupp = input("Do you have target information? (y/n): ")
+    use_cupp = input("\nDo you have target information? (y/n): ")
     if use_cupp.lower() == "y":
         result = cupp_attack(stored_hash)
         if result:
@@ -35,7 +35,7 @@ def main():
         return 0
     
     # Last resort brute force
-    brute_force_attack(stored_hash, string.ascii_lowercase, 1, 6)
+    brute_force_attack(stored_hash, string.ascii_lowercase, 1, 5)
     return 0
 
 if __name__ == "__main__":

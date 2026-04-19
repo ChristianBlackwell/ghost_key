@@ -35,8 +35,6 @@ Pure Python manages roughly 1-5 million attempts per second. Real tools like has
 
 ## The OSINT angle
 
-> _(Target profile mode is currently in development — this section will be updated on completion)_
-
 You don't need to brute force blindly. A motivated attacker who knows your name and rough age doesn't search quadrillions of combinations, they build a targeted wordlist. Name variations, birth years, pet names, favorite teams, all freely available on public social media. A targeted wordlist of 50,000 candidates collapses what would take years down to seconds.
 
 ghost_key's target profile mode demonstrates exactly this. Enter a name, birth year, and a few keywords; the tool generates likely password candidates and runs them first before falling back to rockyou.txt.
@@ -45,7 +43,7 @@ ghost_key's target profile mode demonstrates exactly this. Enter a name, birth y
 
 ## Features
 
-- **Target profile mode** — generates a targeted wordlist from known information about a target _(in development)_
+- **Target profile mode** — generates a targeted wordlist from known information about a target
 - **Dictionary attack** — runs rockyou.txt against a target hash
 - **Brute force** — exhaustive search with configurable character sets and length
 - **Auto hash detection** — detects MD5 vs SHA256 from hash length automatically
